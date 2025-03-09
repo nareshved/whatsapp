@@ -1,3 +1,5 @@
 {
-"isGitignoreExtActive": true,
+    "isGitignoreExtActive": true,
+    "dart.previewFlutterUiGuides": true,
+    "dart.previewFlutterUiGuidesCustomTracking": true,
 }

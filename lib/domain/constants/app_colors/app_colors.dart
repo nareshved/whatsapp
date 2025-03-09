@@ -1,10 +1,46 @@
 import 'package:flutter/material.dart';
 
-const primaryColor = Color(0xffDC1200); // main color of whole app
+class AppColors {
+  // light theme
+  static const Color lightPrimaryColor = Color(0xff00B19C);
+  // static const Color lightPrimaryColor = Color(0xff189C87); // green pahle
+  // static const Color lightPrimaryColor = Color(0xffff9900);
+  static const Color lightBgColor = Colors.white;
+  static const Color lightPrimaryContainerColor = Color(0xFFEFF2F3);
 
-/// dark colors
+  static const Color lightMsgBoxContainerColor = Color(0xff015E4B);
+  static const Color lightChatMsgContainerContainerColor = Color(0xff2D383E);
+  // static const Color lightPrimaryContainerColor = Colors.white;
 
-const darkPrimaryColor = Color(0xffDC1200); // main color of whole app
+  // dark colors
+  static const Color darkPrimaryColor = Color(0xff00B19C);
+  static const Color darkAppBarColor = Color(0xff1C2D35);
+  static const Color darkMsgBoxContainerColor = Color(0xff054640);
+  static const Color darkSplashBgColor = Color(0xff1C2D35);
+
+  static const Color darkChatMsgContainerContainerColor = Color(0xff1C2D35);
+  // static const Color darkPrimaryColor = Color(0xffff9900);
+  static const Color darkbgSurfaceColor = Color(0xff0F1C24);
+  static const Color darkPrimaryContainerColor = Color(0xff13151D);
+  static const Color darkSecondaryTextColor = Color(0xffD7E0E5);
+  static const Color darkOnPrimaryContainerColor = Color(0xff262933);
+  static const Color darkDialogBoxContainerColor = Color(0xff364147);
+}
+
+
+
+
+
+
+
+
+// import 'package:flutter/material.dart';
+
+// const primaryColor = Color(0xffDC1200); // main color of whole app
+
+// /// dark colors
+
+// const darkPrimaryColor = Color(0xffDC1200); // main color of whole app
 
 
 // testing a container color

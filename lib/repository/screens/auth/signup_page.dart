@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:whatsapp/repository/widgets/text_feild/new_text_field.dart';
 
 import '../../../data/bloc/chat/register_bloc.dart';
 import '../../../data/firebase/firebase_provider.dart';
@@ -78,8 +79,8 @@ class _SignUpPageState extends State<SignUpPage> {
                     return null;
                   },
                   mcrontroller: nameController,
-                  hinttxt: "Enter Your password",
-                  labelTxt: "password",
+                  hinttxt: "Enter Your name",
+                  labelTxt: "name",
                   preIcon: const Icon(Icons.usb_rounded),
                 ),
                 myTextField(

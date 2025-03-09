@@ -4,6 +4,7 @@ import 'package:animate_do/animate_do.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:whatsapp/domain/constants/app_colors/app_colors.dart';
 import 'package:whatsapp/domain/constants/assets_path/assets_path.dart';
 import 'package:whatsapp/repository/screens/auth/login_page.dart';
 import '../../widgets/page_routes/routes.dart';
@@ -40,7 +41,7 @@ class _SplashPageState extends State<SplashPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       //  backgroundColor: Theme.of(context).colorScheme.primary,
-      backgroundColor: Color(0xffDC1200),
+      backgroundColor: AppColors.darkSplashBgColor,
       // backgroundColor: Theme.of(context).colorScheme.primary,
       body: Center(
         child: Column(

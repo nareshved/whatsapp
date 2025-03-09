@@ -34,6 +34,7 @@ class LoginPageState extends State<LoginPage> {
               children: [
                 const Text(
                   "Login Your Account!",
+
                   style: TextStyle(fontSize: 22),
                 ),
                 const SizedBox(height: 19),

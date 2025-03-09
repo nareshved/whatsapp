@@ -42,9 +42,11 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         initialRoute: AppRoutes.splashScreen,
         routes: AppRoutes.routes,
+
         title: 'One Chat',
         theme: mlightTheme,
         darkTheme: mDarkTheme,
+
         //    themeMode: ThemeMode.dark,
         // home: const BottomNavBarHome(),
       ),
