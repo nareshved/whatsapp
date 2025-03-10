@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:whatsapp/data/bloc/chat/register_bloc.dart';
-
+import 'package:whatsapp/repository/widgets/text_feild/new_text_field.dart';
 import '../../widgets/page_routes/routes.dart';
-import '../../widgets/text_feild/text_field.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({super.key});
@@ -22,46 +21,41 @@ class LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isPage = MediaQuery.sizeOf(context);
     return Scaffold(
-      appBar: AppBar(title: const Text("LoginPage")),
       body: Form(
         key: mFormKey,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(18.0),
             child: Column(
+              spacing: 12,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  "Login Your Account!",
-
-                  style: TextStyle(fontSize: 22),
-                ),
-                const SizedBox(height: 19),
-                myTextField(
+                WhatsAppTextField(
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "enter a email";
                     }
                     return null;
                   },
-                  mcrontroller: emailController,
-                  hinttxt: "Enter Your email",
-                  labelTxt: "Email",
-                  preIcon: const Icon(Icons.email),
+                  controller: emailController,
+                  hintText: "Enter Your email",
+
+                  suffixIcon: const Icon(Icons.email),
                 ),
                 const SizedBox(height: 12),
-                myTextField(
+                WhatsAppTextField(
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "enter a password";
                     }
                     return null;
                   },
-                  mcrontroller: passController,
-                  hinttxt: "Enter Your password",
-                  labelTxt: "password",
-                  preIcon: const Icon(Icons.remove_red_eye),
+                  controller: passController,
+                  hintText: "Enter Your password",
+
+                  suffixIcon: const Icon(Icons.remove_red_eye),
                 ),
                 const SizedBox(height: 12),
                 BlocConsumer<ChatBloc, ChatState>(
@@ -74,37 +68,43 @@ class LoginPageState extends State<LoginPage> {
                   },
                   builder: (context, state) {
                     if (state is ChatLoadingState) {
-                      return ElevatedButton(
-                        onPressed: () {},
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CircularProgressIndicator(),
-                            SizedBox(width: 11),
-                            Text("Loading....."),
-                          ],
+                      return SizedBox(
+                        width: isPage.width * 0.8,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CircularProgressIndicator(),
+                              SizedBox(width: 11),
+                              Text("Loading....."),
+                            ],
+                          ),
                         ),
                       );
                     }
 
-                    return ElevatedButton(
-                      onPressed: () {
-                        if (mFormKey.currentState!.validate()) {
-                          String email = emailController.text.toString();
-                          String password = passController.text.toString();
+                    return SizedBox(
+                      width: isPage.width * 0.8,
+                      child: ElevatedButton(
+                        onPressed: () {
+                          if (mFormKey.currentState!.validate()) {
+                            String email = emailController.text.toString();
+                            String password = passController.text.toString();
 
-                          if (email.isNotEmpty && password.isNotEmpty) {
-                            BlocProvider.of<ChatBloc>(context).add(
-                              LoginUserEvent(
-                                ctx: context,
-                                loginEmail: email,
-                                loginPassword: password,
-                              ),
-                            );
+                            if (email.isNotEmpty && password.isNotEmpty) {
+                              BlocProvider.of<ChatBloc>(context).add(
+                                LoginUserEvent(
+                                  ctx: context,
+                                  loginEmail: email,
+                                  loginPassword: password,
+                                ),
+                              );
+                            }
                           }
-                        }
-                      },
-                      child: const Text("login"),
+                        },
+                        child: const Text("logIn"),
+                      ),
                     );
                   },
                 ),

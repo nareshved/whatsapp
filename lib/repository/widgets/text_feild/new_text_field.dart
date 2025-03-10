@@ -8,9 +8,11 @@ class WhatsAppTextField extends StatefulWidget {
   final bool obscureText;
   final TextInputType keyboardType;
   final Function(String)? onChanged;
-  final Function(String)? onSubmitted;
+  String? Function(String? value)? validator;
 
-  const WhatsAppTextField({
+  
+
+  WhatsAppTextField({
     super.key,
     required this.controller,
     required this.hintText,
@@ -19,7 +21,7 @@ class WhatsAppTextField extends StatefulWidget {
     this.obscureText = false,
     this.keyboardType = TextInputType.text,
     this.onChanged,
-    this.onSubmitted,
+    this.validator,
   });
 
   @override
@@ -43,12 +45,13 @@ class WhatsAppTextFieldState extends State<WhatsAppTextField> {
         //     ),
         // ],
       ),
-      child: TextField(
+      child: TextFormField(
         controller: widget.controller,
         obscureText: widget.obscureText,
         keyboardType: widget.keyboardType,
         onChanged: widget.onChanged,
-        onSubmitted: widget.onSubmitted,
+       
+        validator: widget.validator,
         onTap: () {
           setState(() {
             _isFocused = true;
@@ -60,6 +63,7 @@ class WhatsAppTextFieldState extends State<WhatsAppTextField> {
           });
         },
         decoration: InputDecoration(
+          
           hintText: widget.hintText,
           hintStyle: TextStyle(color: Colors.grey[600]),
           prefixIcon: widget.prefixIcon,

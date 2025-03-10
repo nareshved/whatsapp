@@ -59,17 +59,7 @@ class _SplashPageState extends State<SplashPage> {
               ),
             ),
             SizedBox(height: 40.h),
-            FadeIn(
-              animate: true,
-              duration: Duration(seconds: 2),
-              child: Text(
-                "One chat",
-                style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                  color: Theme.of(context).colorScheme.surface,
-                ),
-              ),
-            ),
-            SizedBox(height: 10.h),
+
             FadeIn(
               animate: true,
               duration: Duration(seconds: 2),

@@ -7,6 +7,7 @@ import 'package:whatsapp/data/bloc/users/user_bloc.dart';
 import 'package:whatsapp/data/firebase/firebase_provider.dart';
 import 'package:whatsapp/domain/constants/app_themes/app_themes.dart';
 import 'package:whatsapp/firebase_options.dart';
+import 'package:whatsapp/repository/widgets/home_page/bottom_nav_bar.dart';
 
 import 'repository/widgets/page_routes/routes.dart';
 
@@ -41,7 +42,8 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         initialRoute: AppRoutes.splashScreen,
-        routes: AppRoutes.routes,
+        // routes: AppRoutes.routes,
+        home: BottomNavBarHome(),
 
         title: 'One Chat',
         theme: mlightTheme,

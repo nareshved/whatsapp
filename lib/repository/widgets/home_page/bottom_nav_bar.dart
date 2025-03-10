@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:whatsapp/repository/screens/home/chats/chats_page.dart';
 import 'package:whatsapp/repository/screens/home/settings/settings.dart';
-
 import '../../screens/home/calls/calls_page.dart';
 
 class BottomNavBarHome extends StatefulWidget {
@@ -20,6 +19,7 @@ class _BottomNavBarHomeState extends State<BottomNavBarHome> {
   Widget build(BuildContext context) {
     return Scaffold(
       bottomNavigationBar: NavigationBar(
+        indicatorColor: Theme.of(context).colorScheme.primary,
         selectedIndex: mSelectedIndex,
         onDestinationSelected: (value) {
           setState(() {

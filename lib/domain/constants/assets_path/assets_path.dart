@@ -1,5 +1,5 @@
 class ImagesPathProvider {
-  static final String basePath = "assets/icons/";
-  static final String appLogoRed = "${basePath}app_logo/red_bg_logo.png";
-  static final String appLogoWhite = "${basePath}app_logo/white_bg_logo.png";
+  static final String basePath = "assets/images/";
+  static final String appLogoRed = "$basePath/red_bg_logo.png";
+  static final String appLogoWhite = "$basePath/white_bg_logo.png";
 }

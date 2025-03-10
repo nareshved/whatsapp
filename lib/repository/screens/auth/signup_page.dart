@@ -1,11 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:whatsapp/repository/widgets/text_feild/new_text_field.dart';
 
 import '../../../data/bloc/chat/register_bloc.dart';
 import '../../../data/firebase/firebase_provider.dart';
 import '../../../domain/models/user_model.dart';
-import '../../widgets/text_feild/text_field.dart';
 import 'login_page.dart';
 
 class SignUpPage extends StatefulWidget {
@@ -55,34 +55,29 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
+    final isPage = MediaQuery.sizeOf(context);
     return Scaffold(
-      appBar: AppBar(title: const Text("SignUpPage")),
       body: Form(
         key: mFormKey,
         child: Center(
           child: Padding(
             padding: const EdgeInsets.all(18.0),
             child: Column(
+              spacing: 12,
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                const Text(
-                  "SignUp To Create Account!",
-                  style: TextStyle(fontSize: 22),
-                ),
-                const SizedBox(height: 19),
-                myTextField(
+                WhatsAppTextField(
                   validator: (value) {
                     if (value!.isEmpty) {
                       return "enter name please";
                     }
                     return null;
                   },
-                  mcrontroller: nameController,
-                  hinttxt: "Enter Your name",
-                  labelTxt: "name",
-                  preIcon: const Icon(Icons.usb_rounded),
+                  controller: nameController,
+                  hintText: "Enter Your name",
+                  suffixIcon: const Icon(Icons.person),
                 ),
-                myTextField(
+                WhatsAppTextField(
                   validator: (value) {
                     const pattern =
                         r'^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$';
@@ -96,23 +91,22 @@ class _SignUpPageState extends State<SignUpPage> {
                     }
                     return null;
                   },
-                  mcrontroller: emailController,
-                  hinttxt: "Enter Your email",
-                  labelTxt: "Email",
-                  preIcon: const Icon(Icons.email),
+                  controller: emailController,
+                  hintText: "Enter Your email",
+                  suffixIcon: const Icon(Icons.mail),
                 ),
-                const SizedBox(height: 12),
-                myTextField(
+
+                WhatsAppTextField(
                   validator: (value) {
                     if (value!.length <= 7) {
                       return "Length should be greater than 7";
                     }
                     return null;
                   },
-                  mcrontroller: passController,
-                  hinttxt: "Enter Your password",
-                  labelTxt: "password",
-                  preIcon: const Icon(Icons.remove_red_eye),
+                  controller: passController,
+                  hintText: "Enter Your password",
+
+                  suffixIcon: const Icon(Icons.remove_red_eye),
                 ),
                 const SizedBox(height: 12),
                 BlocConsumer<ChatBloc, ChatState>(
@@ -132,49 +126,58 @@ class _SignUpPageState extends State<SignUpPage> {
                   },
                   builder: (context, state) {
                     if (state is ChatLoadingState) {
-                      return ElevatedButton(
-                        onPressed: () {},
-                        child: const Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            CircularProgressIndicator(),
-                            SizedBox(width: 11),
-                            Text('Loading'),
-                          ],
+                      return SizedBox(
+                        width: isPage.width * 0.8,
+                        child: ElevatedButton(
+                          onPressed: () {},
+                          child: const Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              CircularProgressIndicator(),
+                              SizedBox(width: 11),
+                              Text('Loading'),
+                            ],
+                          ),
                         ),
                       );
                     }
-                    return ElevatedButton(
-                      onPressed: () async {
-                        /// firebase sign Up
+                    return SizedBox(
+                      width: isPage.width * 0.8,
+                      child: ElevatedButton(
+                        onPressed: () async {
+                          /// firebase sign Up
 
-                        if (mFormKey.currentState!.validate()) {
-                          String email = emailController.text;
-                          String password = passController.text;
-                          String name = nameController.text;
+                          if (mFormKey.currentState!.validate()) {
+                            String email = emailController.text;
+                            String password = passController.text;
+                            String name = nameController.text;
 
-                          if (emailController.text.isNotEmpty &&
-                              passController.text.isNotEmpty) {
-                            var newUser = UserModel(
-                              name: name,
-                              email: email,
-                              mobNo: "9876543321",
-                              gender: "Male",
-                              isOnline: false,
-                              status: 1,
-                              profilePic: "wait",
-                              profileStatus: 1,
-                            );
+                            if (emailController.text.isNotEmpty &&
+                                passController.text.isNotEmpty) {
+                              var newUser = UserModel(
+                                name: name,
+                                email: email,
+                                mobNo: "9876543321",
+                                gender: "Male",
+                                isOnline: true,
+                                status: 1,
+                                profilePic: "wait",
+                                profileStatus: 1,
+                              );
 
-                            BlocProvider.of<ChatBloc>(context).add(
-                              CreateUserEvent(newUser: newUser, pass: password),
-                            );
+                              BlocProvider.of<ChatBloc>(context).add(
+                                CreateUserEvent(
+                                  newUser: newUser,
+                                  pass: password,
+                                ),
+                              );
+                            }
+
+                            /// if
                           }
-
-                          /// if
-                        }
-                      },
-                      child: const Text("SignUp Now!"),
+                        },
+                        child: const Text("SignUp Now!"),
+                      ),
                     );
                   },
                 ),
@@ -188,7 +191,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     );
                   },
-                  child: const Text("Go Login Page"),
+                  child: const Text("LogIn now!"),
                 ),
               ],
             ),
