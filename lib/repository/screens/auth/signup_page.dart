@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:whatsapp/repository/widgets/text_feild/new_text_field.dart';
 
 import '../../../data/bloc/chat/register_bloc.dart';
 import '../../../data/firebase/firebase_provider.dart';
